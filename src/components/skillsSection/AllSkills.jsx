@@ -3,7 +3,7 @@ import { FaHtml5 } from "react-icons/fa";
 import { FaCss3Alt } from "react-icons/fa";
 import { IoLogoJavascript } from "react-icons/io";
 import { FaReact, FaJava, FaNodeJs } from "react-icons/fa";
-import { SiSpringboot } from "react-icons/si";
+import { SiSpringboot ,SiPython  } from "react-icons/si";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../framerMotion/variants";
 
@@ -36,6 +36,10 @@ const skills = [
     skill: "ReactJS",
     icon: FaReact,
   },
+  {
+      skill: "Python",
+      icon: SiPython,
+    },
 ];
 
 const AllSkills = () => {
