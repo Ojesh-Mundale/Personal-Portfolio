@@ -7,19 +7,19 @@ const projects = [
   {
     name: "AI Chatbot",
     align: "right",
-    image: "../../public/images/website-img-1.jpg",
+    image: "/images/website-img-1.jpg",
     link: "#",
   },
   {
     name: "E-Commerce Website",
     align: "left",
-    image: "../../public/images/website-img-2.webp",
+    image: "/images/website-img-2.webp",
     link: "#",
   },
   {
     name: "Student Record Management",
     align: "right",
-    image: "../../public/images/website-img-3.jpg",
+    image: "/images/website-img-3.jpg",
     link: "#",
   },
 ];
