@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FiGithub } from "react-icons/fi";
 import { FaInstagram } from "react-icons/fa";
+import { SiLeetcode } from "react-icons/si";
 
 const NavbarMain = () => {
   const menuOpen = useSelector((state) => state.menu.menuOpen);
@@ -16,10 +17,13 @@ const NavbarMain = () => {
           <a href="https://www.linkedin.com/in/ojesh-mundale/" target="_blank" rel="noopener noreferrer" className="text-white text-2xl hover:text-cyan transition-colors duration-300">
             <FaLinkedinIn />
           </a>
-          <a href="#" target="_blank" rel="noopener noreferrer" className="text-white text-2xl hover:text-cyan transition-colors duration-300">
+          <a href="https://github.com/Ojesh-Mundale" target="_blank" rel="noopener noreferrer" className="text-white text-2xl hover:text-cyan transition-colors duration-300">
             <FiGithub />
           </a>
-          <a href="#" target="_blank" rel="noopener noreferrer" className="text-white text-2xl hover:text-cyan transition-colors duration-300">
+          <a href="https://leetcode.com/u/dsawithojesh/" target="_blank" rel="noopener noreferrer" className="text-white text-2xl hover:text-cyan transition-colors duration-300">
+            <SiLeetcode />
+          </a>
+          <a href="https://www.instagram.com/its.me.ojesh/" target="_blank" rel="noopener noreferrer" className="text-white text-2xl hover:text-cyan transition-colors duration-300">
             <FaInstagram />
           </a>
         </div>
