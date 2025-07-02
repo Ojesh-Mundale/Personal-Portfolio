@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 
 const ContactForm = () => {
@@ -15,19 +15,40 @@ const ContactForm = () => {
 
   const sendEmail = (e) => {
     e.preventDefault();
+    // Send original email
     emailjs
       .sendForm("service_9bfi3mn", "template_fgacdp5", form.current, {
         publicKey: "d5_m5gKH9o-qJit99",
       })
       .then(
         () => {
-          setEmail("");
-          setName("");
-          setMessage("");
-          setSuccess("Message Sent Successfully!");
+          // After original email sent, send reply email
+              emailjs
+                .send(
+                  "service_9bfi3mn",
+                  "template_h117ljp",
+                  {
+                    name: name,
+                    email: email,
+                    message: message,
+                  },
+                  "d5_m5gKH9o-qJit99"
+                )
+            .then(
+              () => {
+                setEmail("");
+                setName("");
+                setMessage("");
+                setSuccess("Message Sent Successfully!");
+              },
+              (error) => {
+                console.log("Reply email FAILED...", error.text);
+                setSuccess("Failed to send reply email. Please try again.");
+              }
+            );
         },
         (error) => {
-          console.log("FAILED...", error.text);
+          console.log("Original email FAILED...", error.text);
           setSuccess("Failed to send message. Please try again.");
         }
       );
