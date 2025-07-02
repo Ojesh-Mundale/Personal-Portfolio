@@ -1,2 +1,3 @@
 *.java linguist-language=Java
 *.js linguist-detectable=false
+*.jsx linguist-detectable=false
