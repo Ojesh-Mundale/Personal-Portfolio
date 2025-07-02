@@ -50,7 +50,7 @@ const ContactForm = () => {
     setOtpSentTime(Date.now());
     setOtpError("");
     // Send OTP email using backend API
-    fetch("http://localhost:5000/send-otp", {
+    fetch("https://ojesh-portfolio.vercel.app/send-otp", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
