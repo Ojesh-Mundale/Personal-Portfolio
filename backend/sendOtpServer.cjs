@@ -50,7 +50,7 @@ app.post('/send-otp', async (req, res) => {
         <p>Hi,</p>
         <p>Your OTP code is: <strong>${otp}</strong></p>
         <p>This code is valid for 5 minutes.</p>
-        <p>Best regards,<br/>Your Company</p>
+        <p>Best regards,<br/>Ojesh Mundale</p>
       </div>
     `,
   };
