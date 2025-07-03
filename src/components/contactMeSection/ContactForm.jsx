@@ -24,7 +24,7 @@ const ContactForm = () => {
   const handleMessage = (e) => setMessage(e.target.value);
   const handleEnteredOtp = (e) => setEnteredOtp(e.target.value);
 
-  const BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL || 'http://localhost:5000';
+  const BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL || 'https://personal-portfolio-t7be.onrender.com';
 
   // On component mount, check backend for cooldown expiration
   useEffect(() => {
