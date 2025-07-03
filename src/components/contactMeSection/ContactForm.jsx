@@ -6,7 +6,6 @@ const ContactForm = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [success, setSuccess] = useState("");
-  const [otp, setOtp] = useState("");
   const [enteredOtp, setEnteredOtp] = useState("");
   // Removed unused otpSentTime state as it is not used anywhere
   const [otpVerified, setOtpVerified] = useState(false);
@@ -69,8 +68,7 @@ const ContactForm = () => {
       return;
     }
     const newOtp = generateOtp();
-    setOtp(newOtp);
-    // Removed setOtpSentTime call as otpSentTime state is removed
+    // Removed setOtp call as OTP is now stored on backend
     setOtpError("");
     setOtpCooldown(300); // Start cooldown immediately on click
     // Send OTP email using backend API
@@ -101,14 +99,32 @@ const ContactForm = () => {
   };
 
   const verifyOtp = () => {
-    if (enteredOtp === otp) {
-      setOtpVerified(true);
-      setOtpError("");
-      setSuccess("OTP verified successfully.");
-    } else {
-      setOtpVerified(false);
-      setOtpError("Invalid OTP. Please try again.");
-    }
+    // Call backend to verify OTP
+    fetch(`${BACKEND_BASE_URL}/verify-otp`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        otp: enteredOtp,
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Invalid OTP");
+        }
+        return response.json();
+      })
+      .then(() => {
+        setOtpVerified(true);
+        setOtpError("");
+        setSuccess("OTP verified successfully.");
+      })
+      .catch((error) => {
+        setOtpVerified(false);
+        setOtpError("Invalid OTP. Please try again.");
+      });
   };
 
   const sendEmail = (e) => {
