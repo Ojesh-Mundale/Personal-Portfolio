@@ -9,6 +9,11 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+// In-memory store for last OTP send timestamps per email
+const otpSendTimestamps = new Map();
+
+const OTP_VALIDITY_DURATION = 5 * 60 * 1000; // 5 minutes in milliseconds
+
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
   port: 587,
@@ -24,6 +29,14 @@ app.post('/send-otp', async (req, res) => {
 
   if (!email || !otp) {
     return res.status(400).json({ error: 'Email and OTP are required' });
+  }
+
+  const now = Date.now();
+  const lastSent = otpSendTimestamps.get(email);
+
+  if (lastSent && now - lastSent < OTP_VALIDITY_DURATION) {
+    const waitTime = Math.ceil((OTP_VALIDITY_DURATION - (now - lastSent)) / 1000);
+    return res.status(429).json({ error: `Please wait ${waitTime} seconds before requesting another OTP.` });
   }
 
   const mailOptions = {
@@ -42,6 +55,7 @@ app.post('/send-otp', async (req, res) => {
 
   try {
     await transporter.sendMail(mailOptions);
+    otpSendTimestamps.set(email, now);
     res.json({ message: 'OTP sent successfully' });
   } catch (error) {
     console.error('Error sending OTP email:', error);

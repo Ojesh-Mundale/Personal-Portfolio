@@ -8,7 +8,7 @@ const ContactForm = () => {
   const [success, setSuccess] = useState("");
   const [otp, setOtp] = useState("");
   const [enteredOtp, setEnteredOtp] = useState("");
-  const [otpSentTime, setOtpSentTime] = useState(null);
+  // Removed unused otpSentTime state as it is not used anywhere
   const [otpVerified, setOtpVerified] = useState(false);
   const [otpError, setOtpError] = useState("");
   const [otpCooldown, setOtpCooldown] = useState(0);
@@ -47,8 +47,9 @@ const ContactForm = () => {
     }
     const newOtp = generateOtp();
     setOtp(newOtp);
-    setOtpSentTime(Date.now());
+    // Removed setOtpSentTime call as otpSentTime state is removed
     setOtpError("");
+    setOtpCooldown(300); // Start cooldown immediately on click
     // Send OTP email using backend API
     fetch("https://personal-portfolio-t7be.onrender.com/send-otp", {
       method: "POST",
@@ -68,11 +69,11 @@ const ContactForm = () => {
       })
       .then(() => {
         setSuccess("OTP sent to your email.");
-        setOtpCooldown(300); // 5 minutes cooldown
       })
       .catch((error) => {
         console.error("Failed to send OTP...", error);
         setOtpError("Failed to send OTP. Please try again.");
+        setOtpCooldown(0); // Reset cooldown on failure
       });
   };
 
