@@ -119,7 +119,7 @@ const ContactForm = () => {
       .then(() => {
         setOtpVerified(true);
         setOtpError("");
-        setSuccess("OTP verified successfully.");
+          setSuccess("OTP verified successfully.");
       })
       .catch((error) => {
         setOtpVerified(false);
@@ -159,7 +159,6 @@ const ContactForm = () => {
                 setEmail("");
                 setName("");
                 setMessage("");
-                setOtp("");
                 setEnteredOtp("");
                 setOtpVerified(false);
                 setSuccess("Message Sent Successfully!");
