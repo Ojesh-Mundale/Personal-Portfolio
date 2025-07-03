@@ -24,6 +24,29 @@ const ContactForm = () => {
   const handleMessage = (e) => setMessage(e.target.value);
   const handleEnteredOtp = (e) => setEnteredOtp(e.target.value);
 
+  const BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL || 'http://localhost:5000';
+
+  // On component mount, check backend for cooldown expiration
+  useEffect(() => {
+    if (!email) {
+      setOtpCooldown(0);
+      return;
+    }
+    fetch(`${BACKEND_BASE_URL}/otp-cooldown?email=${encodeURIComponent(email)}`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.cooldown && data.cooldown > 0) {
+          setOtpCooldown(data.cooldown);
+        } else {
+          setOtpCooldown(0);
+        }
+      })
+      .catch(error => {
+        console.error('Failed to fetch OTP cooldown:', error);
+        setOtpCooldown(0);
+      });
+  }, [email]);
+
   useEffect(() => {
     let timer;
     if (otpCooldown > 0) {
@@ -51,7 +74,7 @@ const ContactForm = () => {
     setOtpError("");
     setOtpCooldown(300); // Start cooldown immediately on click
     // Send OTP email using backend API
-    fetch("https://personal-portfolio-t7be.onrender.com/send-otp", {
+    fetch(`${BACKEND_BASE_URL}/send-otp`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -167,6 +190,12 @@ const ContactForm = () => {
             onClick={sendOtp}
             disabled={otpCooldown > 0 || otpVerified}
             className="rounded-lg border border-cyan text-white h-12 px-4 font-bold text-sm hover:bg-darkCyan bg-cyan transition-all duration-500"
+            // Debug log for disabled state
+            ref={el => {
+              if(el) {
+                console.log('Send OTP button disabled:', el.disabled);
+              }
+            }}
           >
             {otpCooldown > 0 ? `Resend OTP (${otpCooldown}s)` : "Send OTP"}
           </button>

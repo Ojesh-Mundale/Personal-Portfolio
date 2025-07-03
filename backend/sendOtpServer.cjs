@@ -63,6 +63,22 @@ app.post('/send-otp', async (req, res) => {
   }
 });
 
+// New endpoint to get remaining cooldown time for an email
+app.get('/otp-cooldown', (req, res) => {
+  const email = req.query.email;
+  if (!email) {
+    return res.status(400).json({ error: 'Email query parameter is required' });
+  }
+  const now = Date.now();
+  const lastSent = otpSendTimestamps.get(email);
+  if (lastSent && now - lastSent < OTP_VALIDITY_DURATION) {
+    const remaining = Math.ceil((OTP_VALIDITY_DURATION - (now - lastSent)) / 1000);
+    return res.json({ cooldown: remaining });
+  } else {
+    return res.json({ cooldown: 0 });
+  }
+});
+
 app.listen(port, () => {
   console.log(`OTP send server running on port ${port}`);
 });
