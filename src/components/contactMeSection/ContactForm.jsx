@@ -219,7 +219,7 @@ const ContactForm = () => {
         {!otpVerified && (
           <div className="flex gap-2 items-center">
             <input
-              type="text"
+              type="number"
               placeholder="Enter OTP"
               value={enteredOtp}
               onChange={handleEnteredOtp}
