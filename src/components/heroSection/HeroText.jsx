@@ -5,8 +5,10 @@ import { useState, useEffect } from "react";
 const phrases = [
   "computer science engineering student",
   "passionate software developer",
-  "java developer",
   "web developer",
+  "full stack developer",
+  "backend developer",
+  "java developer",
 ];
 
 const HeroText = () => {
