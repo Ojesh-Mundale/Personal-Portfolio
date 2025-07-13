@@ -7,20 +7,20 @@ const projects = [
   {
     name: "AI Chatbot",
     align: "right",
-    image: "/images/website-img-1.jpg",
-    link: "#",
+    image: "/images/aiChatbot.png",
+    link: "https://github.com/Ojesh-Mundale/AI-Chatbot",
   },
   {
     name: "E-Commerce Website",
     align: "left",
     image: "/images/website-img-2.webp",
-    link: "#",
+    link: "https://github.com/Ojesh-Mundale/Ecommerce-Website",
   },
   {
     name: "Student Record Management",
     align: "right",
-    image: "/images/website-img-3.jpg",
-    link: "#",
+    image: "/images/StudentRecordManagement.png",
+    link: "https://github.com/Ojesh-Mundale/Student-Record-Management",
   },
 ];
 
