@@ -42,7 +42,7 @@ app.post('/send-otp', async (req, res) => {
   }
 
   const mailOptions = {
-    from: process.env.SMTP_FROM_EMAIL,
+    from: `"Ojesh Mundale" <${process.env.SMTP_FROM_EMAIL}>`,
     to: email,
     subject: 'Your OTP Code',
     html: `
