@@ -2,10 +2,16 @@ import SingleExperience from "./SingleExperience";
 
 const experiences = [
   {
-    job: "Java Intern",
-    company: "Cognifyz Technologies",
+    job: "Java Developer Intern",
+    company: "Infosys-Springboard",
     date: "",
-    responsibilities: [" I worked on Core java projects and also strengthened my java fundamentals and worked on File handling and string manipulation problems. Also sharpened my logical thinking and problem solving skills"],
+    responsibilities: [" I am currently working as a Java Developer Intern at Infosys-Springboard, where I am gaining hands-on experience in Java development and software engineering practices."],
+  },
+  {
+    job: "Full Stack Developer Intern",
+    company: "UptoSkills",
+    date: "",
+    responsibilities: [" I am currently working as a Full Stack Developer Intern at UptoSkills, where I am learning and growing in the field of web development."],
   },
   {
     job: "AI Intern",

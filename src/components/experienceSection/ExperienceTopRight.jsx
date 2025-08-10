@@ -4,13 +4,16 @@ const ExperienceTopRight = () => {
       <p className="text-lg text-center text-lightGrey">
         I specialize in{" "}
         <span className="font-bold text-white">
-          Java and Springboot
+          MERN Stack, Java, Python
         </span>
-        , leveraging best practices to create scalable and maintainable
-        solutions. <br />
+        , and frameworks like{" "}
+        <span className="font-bold text-white">Spring Boot</span>, leveraging
+        best practices to create scalable and maintainable solutions. <br />
         My experience spans working on diverse projects{" "}
-        <span className="font-bold text-white">and problem solving on leetcode</span>,
-        always aiming for clean code and exceptional user experiences.
+        <span className="font-bold text-white">
+          and solving 150+ DSA problems on LeetCode
+        </span>
+        , always aiming for clean code and exceptional user experiences.
       </p>
     </div>
   );

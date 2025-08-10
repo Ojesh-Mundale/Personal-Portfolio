@@ -5,22 +5,22 @@ import { fadeIn } from "../../framerMotion/variants";
 
 const projects = [
   {
-    name: "AI Chatbot",
+    name: "Dual AI Assistant",
     align: "right",
-    image: "/images/aiChatbot.png",
+    image: "/images/Dual-AI-Assistant.jpg",
     link: "https://github.com/Ojesh-Mundale/AI-Chatbot",
-  },
-  {
-    name: "E-Commerce Website",
-    align: "left",
-    image: "/images/website-img-2.webp",
-    link: "https://github.com/Ojesh-Mundale/Ecommerce-Website",
   },
   {
     name: "Student Record Management",
     align: "right",
     image: "/images/StudentRecordManagement.png",
     link: "https://github.com/Ojesh-Mundale/Student-Record-Management",
+  },
+   {
+    name: "E-Commerce Website",
+    align: "left",
+    image: "/images/website-img-2.webp",
+    link: "https://github.com/Ojesh-Mundale/Ecommerce-Website",
   },
 ];
 
