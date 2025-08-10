@@ -8,6 +8,7 @@ import NavbarMain from "./components/navbar/NavbarMain";
 import ProjectsMain from "./components/projectsSection/ProjectsMain";
 import SkillsMain from "./components/skillsSection/SkillsMain";
 import SubSkills from "./components/skillsSection/SubSkills";
+import AskMeBot from "./components/chatbot/AskMeBot";
 //import SubHeroMain from "./components/subHeroSection/SubHeroMain";
 
 import { Analytics } from "@vercel/analytics/react";
@@ -25,6 +26,7 @@ function App() {
       <ProjectsMain />
       <ContactMeMain />
       <FooterMain />
+      <AskMeBot />
       <Analytics />
     </main>
   );
