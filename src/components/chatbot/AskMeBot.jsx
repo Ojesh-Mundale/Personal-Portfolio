@@ -12,7 +12,7 @@ const predefinedQA = [
   },
   {
     question: "How to contact you?",
-    answer: "You can reach me through the Contact section, email me at ojesh@example.com, or connect with me on LinkedIn/GitHub."
+    answer: "You can reach me through the Contact section, email me at ojeshmundale@gmail.com, or connect with me on LinkedIn/GitHub."
   },
   {
     question: "What is your main focus?",
@@ -24,8 +24,18 @@ const AskMeBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [chatHistory, setChatHistory] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(true);
   const chatRef = useRef(null);
   const botRef = useRef(null);
+
+  // Hide welcome message after 5 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowWelcome(false);
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   // Scroll to bottom on chat update
   useEffect(() => {
@@ -92,7 +102,7 @@ const AskMeBot = () => {
         whileTap={{ scale: 0.9 }}
         aria-label="Toggle chatbot"
       >
-        <div className="w-32 h-32 overflow-hidden bg-transparent">
+        <div className="w-28 h-28 overflow-hidden bg-transparent">
           <img 
             src="/bot.gif" 
             alt="Bot Icon" 
@@ -111,10 +121,10 @@ const AskMeBot = () => {
         {isOpen && (
           <motion.div
             ref={botRef}
-            className="fixed bottom-20 right-6 z-50 w-96 h-[500px] bg-white rounded-lg shadow-2xl border border-gray-200 flex flex-col"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
+            className="fixed top-1/2 left-12 -translate-x-1/2 -translate-y-1/2 z-50 w-80 h-[400px] bg-white rounded-lg shadow-2xl border border-gray-200 flex flex-col"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.3 }}
             role="dialog"
             aria-modal="true"
@@ -161,15 +171,26 @@ const AskMeBot = () => {
               style={{ color: 'black', fontWeight: 'bold' }}
             >
               {chatHistory.length === 0 && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="bg-gray-100 p-3 rounded-lg text-sm mb-4"
-                  style={{ color: 'black', fontWeight: 'bold' }}
-                >
-                  Hello! I'm here to help you learn more about this portfolio. Click any question below to get started!
-                </motion.div>
+                <div className="space-y-4">
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="bg-gradient-to-r from-purple-100 to-pink-100 p-3 rounded-lg text-sm border-l-4 border-purple-500"
+                    style={{ color: 'black', fontWeight: 'bold' }}
+                  >
+                    👋 <strong>Welcome!</strong> I'm your AI assistant ready to help you explore this portfolio.
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                    className="bg-blue-50 p-3 rounded-lg text-sm border-l-4 border-blue-500"
+                    style={{ color: 'black', fontWeight: 'bold' }}
+                  >
+                    💡 <strong>Quick Tip:</strong> Click any question below to get instant answers about my work and experience!
+                  </motion.div>
+                </div>
               )}
 
               {chatHistory.map((message, index) => (
