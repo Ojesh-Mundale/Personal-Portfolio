@@ -17,10 +17,10 @@ const projects = [
     link: "https://github.com/Ojesh-Mundale/Student-Record-Management",
   },
    {
-    name: "E-Commerce Website",
+    name: "View more projects on my GitHub",
     align: "left",
     image: "/images/website-img-2.webp",
-    link: "https://github.com/Ojesh-Mundale/Ecommerce-Website",
+    link: "https://github.com/Ojesh-Mundale",
   },
 ];
 
