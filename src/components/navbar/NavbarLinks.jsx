@@ -7,11 +7,11 @@ const links = [
   { link: "Skills", section: "skills" },
   { link: "Experience", section: "experience" },
   { link: "Projects", section: "projects" },
-  {
-    link: "Resume",
-    url: "https://drive.google.com/file/d/1MQ1oNMlQ5vVNaRBAzc2dmxJY_T9LChXJ/view?usp=sharing", // Replace with your real PDF link
-    isResume: true,
-  },
+  // {
+  //   link: "Resume",
+  //   url: "https://drive.google.com/file/d/1MQ1oNMlQ5vVNaRBAzc2dmxJY_T9LChXJ/view?usp=sharing", // Replace with your real PDF link
+  //   isResume: true,
+  // },
   { link: "Contact", section: "contact" },
 ];
 

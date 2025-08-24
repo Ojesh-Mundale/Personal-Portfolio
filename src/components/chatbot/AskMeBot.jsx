@@ -4,20 +4,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 const predefinedQA = [
   {
     question: "What technologies do you use?",
-    answer: "I primarily work with React, Node.js, Express, MongoDB, and various modern web technologies including Tailwind CSS, Framer Motion, and Redux."
+    answer: "I primarily work with MERN stack, Java , Python and various modern web technologies and frameworks."
   },
   {
     question: "Can I see your projects?",
-    answer: "Yes! Check out the Projects section where you will find my recent work including AI assistants, management systems, and web applications."
+    answer: "Yes! Check out the Projects section where you will find my recent work including links to GitHub repositories."
   },
   {
     question: "How to contact you?",
-    answer: "You can reach me through the Contact section, email me at ojeshmundale@gmail.com, or connect with me on LinkedIn/GitHub."
+    answer: "You can reach me through the Contact section or connect with me on LinkedIn/GitHub."
   },
-  {
-    question: "What is your main focus?",
-    answer: "I specialize in creating responsive, user-friendly web applications with clean code and modern design principles."
-  }
 ];
 
 const AskMeBot = () => {
@@ -179,7 +175,7 @@ const AskMeBot = () => {
                     className="bg-gradient-to-r from-purple-100 to-pink-100 p-3 rounded-lg text-sm border-l-4 border-purple-500"
                     style={{ color: 'black', fontWeight: 'bold' }}
                   >
-                    👋 <strong>Welcome!</strong> I'm your AI assistant ready to help you explore this portfolio.
+                    👋 <strong>Welcome!</strong> I am AI assistant of Ojesh ready to help you explore this portfolio.
                   </motion.div>
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
@@ -188,7 +184,7 @@ const AskMeBot = () => {
                     className="bg-blue-50 p-3 rounded-lg text-sm border-l-4 border-blue-500"
                     style={{ color: 'black', fontWeight: 'bold' }}
                   >
-                    💡 <strong>Quick Tip:</strong> Click any question below to get instant answers about my work and experience!
+                    💡 <strong>Quick Tip:</strong> Click any question below to get instant answers about the work and experience of Ojesh.
                   </motion.div>
                 </div>
               )}
