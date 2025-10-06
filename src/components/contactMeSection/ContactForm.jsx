@@ -40,8 +40,8 @@ const ContactForm = () => {
           setOtpCooldown(0);
         }
       })
-      .catch(error => {
-        console.error('Failed to fetch OTP cooldown:', error);
+      .catch(() => {
+        console.error('Failed to fetch OTP cooldown');
         setOtpCooldown(0);
       });
   }, [email]);
@@ -68,7 +68,6 @@ const ContactForm = () => {
       return;
     }
     const newOtp = generateOtp();
-    // Removed setOtp call as OTP is now stored on backend
     setOtpError("");
     setOtpCooldown(300); // Start cooldown immediately on click
     // Send OTP email using backend API

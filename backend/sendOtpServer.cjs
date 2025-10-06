@@ -1,7 +1,9 @@
 const express = require('express');
 const cors = require('cors');
-const nodemailer = require('nodemailer');
+const sgMail = require('@sendgrid/mail');
 require('dotenv').config();
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -16,14 +18,24 @@ const otpStore = new Map();
 
 const OTP_VALIDITY_DURATION = 5 * 60 * 1000; // 5 minutes in milliseconds
 
-const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: false,
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
-  },
+app.post('/store-otp', (req, res) => {
+  const { email, otp } = req.body;
+
+  if (!email || !otp) {
+    return res.status(400).json({ error: 'Email and OTP are required' });
+  }
+
+  const now = Date.now();
+  const lastSent = otpSendTimestamps.get(email);
+
+  if (lastSent && now - lastSent < OTP_VALIDITY_DURATION) {
+    const waitTime = Math.ceil((OTP_VALIDITY_DURATION - (now - lastSent)) / 1000);
+    return res.status(429).json({ error: `Please wait ${waitTime} seconds before requesting another OTP.` });
+  }
+
+  otpSendTimestamps.set(email, now);
+  otpStore.set(email, { otp, timestamp: now });
+  res.json({ message: 'OTP stored successfully' });
 });
 
 app.post('/send-otp', async (req, res) => {
@@ -41,9 +53,9 @@ app.post('/send-otp', async (req, res) => {
     return res.status(429).json({ error: `Please wait ${waitTime} seconds before requesting another OTP.` });
   }
 
-  const mailOptions = {
-    from: `"Ojesh Mundale" <${process.env.SMTP_FROM_EMAIL}>`,
+  const msg = {
     to: email,
+    from: process.env.SENDGRID_FROM_EMAIL || 'your-verified-email@example.com', // Replace with verified sender
     subject: 'Your OTP Code',
     html: `
       <div style="font-family: system-ui, sans-serif, Arial; font-size: 16px;">
@@ -56,7 +68,7 @@ app.post('/send-otp', async (req, res) => {
   };
 
   try {
-    await transporter.sendMail(mailOptions);
+    await sgMail.send(msg);
     otpSendTimestamps.set(email, now);
     otpStore.set(email, { otp, timestamp: now });
     res.json({ message: 'OTP sent successfully' });
